@@ -2,9 +2,8 @@
 
 namespace Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks;
 
-use Automattic\WooCommerce\Admin\Features\Onboarding;
+use Automattic\WooCommerce\Admin\Features\Onboarding\OnboardingProducts;
 use Automattic\WooCommerce\Admin\Features\OnboardingTasks\Task;
-use Automattic\WooCommerce\Admin\PluginsHelper;
 
 /**
  * Purchase Task
@@ -145,27 +144,6 @@ class Purchase extends Task {
 	 * @return array
 	 */
 	public static function get_products() {
-		$profiler_data = get_option( Onboarding::PROFILE_DATA_OPTION, array() );
-		$installed     = PluginsHelper::get_installed_plugin_slugs();
-		$product_types = isset( $profiler_data['product_types'] ) ? $profiler_data['product_types'] : array();
-		$product_data  = Onboarding::get_product_data( Onboarding::get_allowed_product_types() );
-		$purchaseable  = array();
-		$remaining     = array();
-		foreach ( $product_types as $type ) {
-			if ( ! isset( $product_data[ $type ]['slug'] ) ) {
-				continue;
-			}
-
-			$purchaseable[] = $product_data[ $type ];
-
-			if ( ! in_array( $product_data[ $type ]['slug'], $installed, true ) ) {
-				$remaining[] = $product_data[ $type ]['label'];
-			}
-		}
-
-		return array(
-			'purchaseable' => $purchaseable,
-			'remaining'    => $remaining,
-		);
+		return OnboardingProducts::get_relevant_products();
 	}
 }
