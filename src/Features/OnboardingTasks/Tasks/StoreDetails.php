@@ -2,7 +2,7 @@
 
 namespace Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks;
 
-use Automattic\WooCommerce\Admin\Features\Onboarding;
+use Automattic\WooCommerce\Admin\Features\Onboarding\OnboardingProfile;
 use Automattic\WooCommerce\Admin\Features\OnboardingTasks\Task;
 
 /**
@@ -63,7 +63,7 @@ class StoreDetails extends Task {
 	 * @return bool
 	 */
 	public function is_complete() {
-		$profiler_data = get_option( Onboarding::PROFILE_DATA_OPTION, array() );
+		$profiler_data = get_option( OnboardingProfile::DATA_OPTION, array() );
 		return isset( $profiler_data['completed'] ) && true === $profiler_data['completed'];
 	}
 }
