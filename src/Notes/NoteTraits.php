@@ -156,6 +156,7 @@ trait NoteTraits {
 			return;
 		}
 
+		error_log(self::NOTE_NAME );
 		// Update note content if it's changed.
 		$latest_note_content = self::get_note()->get_content();
 		if ( $note->get_content() !== $latest_note_content ) {

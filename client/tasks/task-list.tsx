@@ -16,6 +16,7 @@ import { Text, List, CollapsibleList } from '@woocommerce/experimental';
 import { TaskListItem } from './task-list-item';
 import { TaskListMenu } from './task-list-menu';
 import './task-list.scss';
+import { ProgressHeader } from '~/task-lists/progress-header';
 
 export type TaskListProps = TaskListType & {
 	query: {
@@ -30,6 +31,7 @@ export const TaskList: React.FC< TaskListProps > = ( {
 	title: listTitle,
 	isCollapsible = false,
 	isExpandable = false,
+	displayProgressHeader = false,
 	query,
 } ) => {
 	const { profileItems } = useSelect( ( select ) => {
@@ -106,6 +108,9 @@ export const TaskList: React.FC< TaskListProps > = ( {
 	return (
 		<>
 			<div className="woocommerce-task-dashboard__container">
+				{ displayProgressHeader ? (
+					<ProgressHeader taskListId={ id } />
+				) : null }
 				<Card
 					size="large"
 					className="woocommerce-task-card woocommerce-homescreen-card"

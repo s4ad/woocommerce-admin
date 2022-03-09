@@ -41,6 +41,13 @@ class TaskList {
 	public $hidden_id = '';
 
 	/**
+	 * ID.
+	 *
+	 * @var boolean
+	 */
+	public $display_progress_header = false;
+
+	/**
 	 * Title.
 	 *
 	 * @var string
@@ -81,6 +88,7 @@ class TaskList {
 			'tasks'        => array(),
 			'sort_by'      => array(),
 			'event_prefix' => null,
+			'display_progress_header' => false
 		);
 
 		$data = wp_parse_args( $data, $defaults );
@@ -90,6 +98,7 @@ class TaskList {
 		$this->title        = $data['title'];
 		$this->sort_by      = $data['sort_by'];
 		$this->event_prefix = $data['event_prefix'];
+		$this->display_progress_header = $data['display_progress_header'];
 
 		foreach ( $data['tasks'] as $task_name ) {
 			$class = 'Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks\\' . $task_name;
@@ -310,6 +319,7 @@ class TaskList {
 				$this->get_viewable_tasks()
 			),
 			'eventPrefix' => $this->prefix_event( '' ),
+			'displayProgressHeader' => $this->display_progress_header,
 		);
 	}
 }

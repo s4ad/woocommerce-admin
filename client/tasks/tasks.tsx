@@ -117,6 +117,7 @@ export const Tasks: React.FC< TasksProps > = ( { query } ) => {
 				isToggleable,
 				title,
 				tasks,
+				displayProgressHeader,
 			} = taskList;
 
 			if ( ! isVisible ) {
@@ -135,6 +136,7 @@ export const Tasks: React.FC< TasksProps > = ( { query } ) => {
 						query={ query }
 						tasks={ tasks }
 						title={ title }
+						displayProgressHeader={ displayProgressHeader }
 					/>
 					{ isToggleable && (
 						<DisplayOption>
