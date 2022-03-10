@@ -371,7 +371,7 @@ class Loader {
 		$settings['notifyLowStockAmount'] = get_option( 'woocommerce_notify_low_stock_amount' );
 		// @todo On merge, once plugin images are added to core WooCommerce, `wcAdminAssetUrl` can be retired,
 		// and `wcAssetUrl` can be used in its place throughout the codebase.
-		$settings['wcAdminAssetUrl'] = plugins_url( 'images/', dirname( __DIR__ ) . '/woocommerce-admin.php' );
+		$settings['wcAdminAssetUrl'] = WC_ADMIN_IMAGES_FOLDER_URL;
 		$settings['wcVersion']       = WC_VERSION;
 		$settings['siteUrl']         = site_url();
 		$settings['shopUrl']         = get_permalink( wc_get_page_id( 'shop' ) );
