@@ -82,22 +82,22 @@ class TaskList {
 	 */
 	public function __construct( $data = array() ) {
 		$defaults = array(
-			'id'           => null,
-			'hidden_id'    => null,
-			'title'        => '',
-			'tasks'        => array(),
-			'sort_by'      => array(),
-			'event_prefix' => null,
-			'display_progress_header' => false
+			'id'                      => null,
+			'hidden_id'               => null,
+			'title'                   => '',
+			'tasks'                   => array(),
+			'sort_by'                 => array(),
+			'event_prefix'            => null,
+			'display_progress_header' => false,
 		);
 
 		$data = wp_parse_args( $data, $defaults );
 
-		$this->id           = $data['id'];
-		$this->hidden_id    = $data['hidden_id'];
-		$this->title        = $data['title'];
-		$this->sort_by      = $data['sort_by'];
-		$this->event_prefix = $data['event_prefix'];
+		$this->id                      = $data['id'];
+		$this->hidden_id               = $data['hidden_id'];
+		$this->title                   = $data['title'];
+		$this->sort_by                 = $data['sort_by'];
+		$this->event_prefix            = $data['event_prefix'];
 		$this->display_progress_header = $data['display_progress_header'];
 
 		foreach ( $data['tasks'] as $task_name ) {
@@ -307,18 +307,18 @@ class TaskList {
 	public function get_json() {
 		$this->possibly_track_completion();
 		return array(
-			'id'          => $this->get_list_id(),
-			'title'       => $this->title,
-			'isHidden'    => $this->is_hidden(),
-			'isVisible'   => $this->is_visible(),
-			'isComplete'  => $this->is_complete(),
-			'tasks'       => array_map(
+			'id'                    => $this->get_list_id(),
+			'title'                 => $this->title,
+			'isHidden'              => $this->is_hidden(),
+			'isVisible'             => $this->is_visible(),
+			'isComplete'            => $this->is_complete(),
+			'tasks'                 => array_map(
 				function( $task ) {
 					return $task->get_json();
 				},
 				$this->get_viewable_tasks()
 			),
-			'eventPrefix' => $this->prefix_event( '' ),
+			'eventPrefix'           => $this->prefix_event( '' ),
 			'displayProgressHeader' => $this->display_progress_header,
 		);
 	}
